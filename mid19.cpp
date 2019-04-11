@@ -1,4 +1,4 @@
-//GitHub Repo: https://github.com/nlarson2/3350Midterm.git
+//https://github.com/nlarson2/3350Midterm.git
 //
 //
 //Author: Gordon Griesel
