@@ -304,91 +304,91 @@ bool checkErr(Flt len, Flt actual, double tol)
 {
   Flt chk = len - actual;
   if(abs(chk) > tol)
-      return true;
+    return true;
   return false;
 }
 int main(int argc, char *argv[])
 {
-    //Program to calculate vector normalization and length.
-	//
+  //Program to calculate vector normalization and length.
+  //
 #ifdef UNIT_TEST
-    if ( argc != 2 ) {
-      printf("Unit test requires a tolerance argument(double)\n");
-      return 0;
-    }
-    const double tol = atof(argv[1]);
-    printf("                                                \n");
-    printf("3350 software engineering                       \n");
-    printf("                                                \n");
-    printf("Unit test of vec_length() function:             \n");
-    printf("tolerance: %f                                 \n", tol);
-    printf("                                                \n");
-    printf("     x         y         length      Actual     \n");
-    printf("     --------  --------  ----------  ---------- \n");
-    int pos = 5;
-#else
-    printf("                                    \n");
-    printf("3350 software engineering           \n");
-    printf("                                    \n");
-    printf("Calculation of vector lengths:      \n");
-    printf("                                    \n");
-    printf("     x         y         length     \n");
-    printf("     --------  --------  ---------- \n");
-    int pos = 2;
-#endif
-    //read until sentinel found.
-    int i = 0;
-
-    Vec v = { arr[i*pos], arr[i*pos+1] };
-    do {
-        Flt ret = vec_length(v);
-#ifdef UNIT_TEST
-
-        printf("%3i  %8.5lf  %8.5lf  %10.5lf %10.5lf %s\n",
-            i+1, arr[i*pos], arr[i*pos+1], arr[i*pos+4], ret,
-            checkErr(ret, arr[i*pos+4], tol) ? "<--error Here" : "" );
-#else
-        printf("%3i  %8.5lf  %8.5lf  %10.5lf\n", i+1, v[0], v[1], ret);
-#endif   
-        
-        ++i;
-
-        v[0]= arr[i*pos];
-        v[1] = arr[i*pos+1];
-    } while (!(v[0]==0.0 && v[1]==0.0));
-    //
-    printf("\nProgram complete.\n\n");
+  if ( argc != 2 ) {
+    printf("Unit test requires a tolerance argument(double)\n");
     return 0;
+  }
+  const double tol = atof(argv[1]);
+  printf("                                                \n");
+  printf("3350 software engineering                       \n");
+  printf("                                                \n");
+  printf("Unit test of vec_length() function:             \n");
+  printf("tolerance: %f                                 \n", tol);
+  printf("                                                \n");
+  printf("     x         y         length      Actual     \n");
+  printf("     --------  --------  ----------  ---------- \n");
+  int pos = 5;
+#else
+  printf("                                    \n");
+  printf("3350 software engineering           \n");
+  printf("                                    \n");
+  printf("Calculation of vector lengths:      \n");
+  printf("                                    \n");
+  printf("     x         y         length     \n");
+  printf("     --------  --------  ---------- \n");
+  int pos = 2;
+#endif
+  //read until sentinel found.
+  int i = 0;
+
+  Vec v = { arr[i*pos], arr[i*pos+1] };
+  do {
+    Flt ret = vec_length(v);
+#ifdef UNIT_TEST
+
+    printf("%3i  %8.5lf  %8.5lf  %10.5lf %10.5lf %s\n",
+        i+1, arr[i*pos], arr[i*pos+1], arr[i*pos+4], ret,
+        checkErr(ret, arr[i*pos+4], tol) ? "<--error Here" : "" );
+#else
+    printf("%3i  %8.5lf  %8.5lf  %10.5lf\n", i+1, v[0], v[1], ret);
+#endif   
+
+    ++i;
+
+    v[0]= arr[i*pos];
+    v[1] = arr[i*pos+1];
+  } while (!(v[0]==0.0 && v[1]==0.0));
+  //
+  printf("\nProgram complete.\n\n");
+  return 0;
 }
 
 Flt vec_length(Vec v)
 {
-    //Normalize a vector.
-    //Return the original length of the vector.
-    //
-    //input: the 2 components of a vector
-    //output: the pre-normalized vector length is returned
-    //        the vector argument is scaled to a length of 1.0
-    //
-    //A degenerate vector causes an error ciondition.
-    //It will return a length of 0.0
-    //and an arbitrary vector with length 1.0.
-    //
-    //calculate the vector dot product with itself...
-    Flt dot = v[0]*v[0] + v[1]*v[1];
-    //check for degenerate vector...
-    if (dot == 0.0) {
-        //set an arbitrary vector of length 1.0
-        //printf("ERROR vector magnitude is zero.\n");
-        v[0] = 1.0;
-        v[1] = 0.0;
-        return 0.0;
-    }
-    //vector has a magnitude so continue.
-    Flt len = sqrt(dot);
-    Flt oolen = 1.0 / len;
-    v[0] *= oolen;
-    v[1] *= oolen;
-    return len;
+  //Normalize a vector.
+  //Return the original length of the vector.
+  //
+  //input: the 2 components of a vector
+  //output: the pre-normalized vector length is returned
+  //        the vector argument is scaled to a length of 1.0
+  //
+  //A degenerate vector causes an error ciondition.
+  //It will return a length of 0.0
+  //and an arbitrary vector with length 1.0.
+  //
+  //calculate the vector dot product with itself...
+  Flt dot = v[0]*v[0] + v[1]*v[1];
+  //check for degenerate vector...
+  if (dot == 0.0) {
+    //set an arbitrary vector of length 1.0
+    //printf("ERROR vector magnitude is zero.\n");
+    v[0] = 1.0;
+    v[1] = 0.0;
+    return 0.0;
+  }
+  //vector has a magnitude so continue.
+  Flt len = sqrt(dot);
+  Flt oolen = 1.0 / len;
+  v[0] *= oolen;
+  v[1] *= oolen;
+  return len;
 }
 
