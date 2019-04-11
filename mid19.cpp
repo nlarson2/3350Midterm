@@ -1,4 +1,4 @@
-//
+//GitHub Repo: https://github.com/nlarson2/3350Midterm.git
 //
 //
 //Author: Gordon Griesel
@@ -8,7 +8,6 @@
 //
 //Modified By: Nickolas Larson
 //Date: April 11, 2019
-//GitHub Repo: https://github.com/nlarson2/3350Midterm.git
 //
 //See instructions on assignment web page to produce a unit-test
 //for the vec_length function.
